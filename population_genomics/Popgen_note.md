@@ -29,7 +29,15 @@ The results showed high quality sequence, with most Q-scores being >>20, and low
 leaned reads are now ready to proceed to the next step in our pipeline: mapping to the reference genome! 
 
 ### 09/16/2025: Mapping Reads to the Reference Genome
-
+* note my population is 2027
+* we used clean reads to map to black spruce reference genome using bwa-mem2
+* the reference genome is provided here: 
+`/users/s/m/smdecker/projects/eco_genomics_2025/population_genomics`
+* we modified the mapping.sh script to our specific population samples and saved resulting sequence files (.sam) to the class shared space: 
+`/gpfs1/cl/ecogen/pbio6800/PopulationGenomics/bams`
+* We submitted to the VACC SLURM scheduler using sbatch requesting 10 cpus and 64 GB ram 
+* some nodes would not compute so we had to run a few times until no more failure 
+* While it was running we produced process_bam.sh and bam_stats.sh files and combined them in a wrapper (process_stats_wrapper.sh)
 
 
 
