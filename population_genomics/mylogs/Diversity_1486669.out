@@ -1,0 +1,11 @@
+/var/spool/slurm/d/job1486669/slurm_script: line 34: cd: -/: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+mkdir: cannot create directory ‘/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD’: File exists
+ANGSD.sh: line 30: ANGSD: command not found
+	-> Problem opening file: '/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL.saf.idx'
+ANGSD_do_Theta.sh: line 33: Once: command not found
+	-> Problem opening file: '/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL.saf.idx'
+ thetaStat do_stat /users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL.thetas.idx -win 50000 -step 50000 -outnames /users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/2027_ALL_win50000_step50000.thetasWindow.gz
+	Assuming binfile:/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL.thetas.gz and indexfile:/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL.thetas.idx
+	-> Problems opening file: '/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL.thetas.idx'
+cut: /users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/2027_ALL.thetasWindow.gz.pestPG: No such file or directory

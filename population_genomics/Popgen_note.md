@@ -42,7 +42,7 @@ leaned reads are now ready to proceed to the next step in our pipeline: mapping 
 
 
 
-
+### 09/18/2025: Review Bamstats and set up nucleotide diversity estimation using ANgo
 
 
 
