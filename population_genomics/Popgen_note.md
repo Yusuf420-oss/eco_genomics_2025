@@ -32,17 +32,26 @@ leaned reads are now ready to proceed to the next step in our pipeline: mapping 
 * note my population is 2027
 * we used clean reads to map to black spruce reference genome using bwa-mem2
 * the reference genome is provided here: 
-`/users/s/m/smdecker/projects/eco_genomics_2025/population_genomics`
+`/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics`
 * we modified the mapping.sh script to our specific population samples and saved resulting sequence files (.sam) to the class shared space: 
 `/gpfs1/cl/ecogen/pbio6800/PopulationGenomics/bams`
 * We submitted to the VACC SLURM scheduler using sbatch requesting 10 cpus and 64 GB ram 
 * some nodes would not compute so we had to run a few times until no more failure 
 * While it was running we produced process_bam.sh and bam_stats.sh files and combined them in a wrapper (process_stats_wrapper.sh)
 
-
-
-
 ### 09/18/2025: Review Bamstats and set up nucleotide diversity estimation using ANgo
 
+Wrote a short script called "Bamstats Review.R" located in myscripts to evaluate the mapping success
+
+*Roughly 60% of reads mapped in proper pairs
+
+*Obtained depth of coverage between 2-3x -> suggests we need to use a probabilistic framework for analyzing the genotype data.
+
+We then created a bash script to set up ANGSD to estimate nucleotide diversity, which is saved in myscripts/ folder titled "ANGSD.sh". This script created a folder in mydata/ which is populated by a file called "2100_bam.list". The bash script was run using the following code:
+
+bash ANGSD.sh
+Then, we added another chunk of code in the "ANGSD.sh" file in order to run the ANGSD portion of the script.
+
+A wrapper script called "ANGSD_do_Thetas.sh" was created to begin analyzing nucleotide diversity. The file is located in myscripts/ folder. We sent this script to the VACC and the output file is stored in mylogs/.
 
 
