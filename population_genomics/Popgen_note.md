@@ -26,7 +26,7 @@ Fastp Reports for each samples, which I saved into the directory:
 
 The results showed high quality sequence, with most Q-scores being >>20, and low amount of the adapted contamination, which we trimmed out. We also trimmed out the leading 12 bp to get rid of barcoded indices.
 
-leaned reads are now ready to proceed to the next step in our pipeline: mapping to the reference genome! 
+Cleaned reads are now ready to proceed to the next step in our pipeline: mapping to the reference genome! 
 
 
 ### 09/16/2025: Mapping Reads to the Reference Genome
@@ -77,4 +77,6 @@ Then, we added another chunk of code in the "ANGSD.sh" file in order to run the 
 
 A wrapper script called "ANGSD_do_Thetas.sh" was created to begin analyzing nucleotide diversity. The file is located in myscripts/ folder. We sent this script to the VACC and the output file is stored in mylogs/.
 
+
+### 09/23/2025:
 
