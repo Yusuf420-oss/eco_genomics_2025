@@ -1,0 +1,1 @@
+[2025-09-25T16:49:02.749] error: execve(): bad interpreter(/bin/bash#---------  Slurm preamble, defines the job with #SBATCH statements): No such file or directory

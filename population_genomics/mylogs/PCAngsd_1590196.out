@@ -1,0 +1,7 @@
+
+    WARNING: 1 active Conda environment(s) detected.
+
+    Enter 'conda deactivate' until all environments are
+    deactivated and then load the 'pcangsd' module again.
+
+/var/spool/slurm/d/job1590196/slurm_script: line 67: pcangsd: command not found

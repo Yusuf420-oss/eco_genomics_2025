@@ -1,0 +1,8 @@
+
+    WARNING: 1 active Conda environment(s) detected.
+
+    Enter 'conda deactivate' until all environments are
+    deactivated and then load the 'pcangsd' module again.
+
+mkdir: cannot create directory ‘/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX’: File exists
+/var/spool/slurm/d/job1590208/slurm_script: line 67: pcangsd: command not found
