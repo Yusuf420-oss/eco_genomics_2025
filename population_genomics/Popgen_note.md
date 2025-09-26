@@ -78,5 +78,12 @@ Then, we added another chunk of code in the "ANGSD.sh" file in order to run the 
 A wrapper script called "ANGSD_do_Thetas.sh" was created to begin analyzing nucleotide diversity. The file is located in myscripts/ folder. We sent this script to the VACC and the output file is stored in mylogs/.
 
 
-### 09/23/2025:
+### 09/23/2025: Nuclear Diversity and Tijima D Analysis
+
+We created a RMD file called Nuclear_Diversity.Rmd. 
+
+
+
+
+### 09/25/2025: PCA and Admixture Analysis 
 
