@@ -2,7 +2,7 @@
 title: "NUCLEOTIDE DIVERSITY"
 author: "OYEBAMIJI YUSUF"
 date: "2025-09-23"
-output: 
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +11,7 @@ knitr::opts_knit$set(root.dir =
                     "~/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/"  )
 ```
 
-### R Markdown
+### Loading Library
 
 ```{r}
 library(ggplot2)
@@ -20,11 +20,6 @@ library(tidyverse)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = '~/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/diversity/')
-```
  
 Import our libraries for plotting
  

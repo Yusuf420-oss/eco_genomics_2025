@@ -80,10 +80,31 @@ A wrapper script called "ANGSD_do_Thetas.sh" was created to begin analyzing nucl
 
 ### 09/23/2025: Nuclear Diversity and Tijima D Analysis
 
-We created a RMD file called Nuclear_Diversity.Rmd. 
+We created a RMD file called Nuclear_Diversity.Rmd where all the code chunk were documented.
 
+Overall, the script was aimed at analyzing the nucleotide diversity patterns across the genome of red spruce using a processed data named diversity in myresult directory. 
 
+The path to the file was stipulated in the code chunk
+
+To begin the analysis, libraries were loaded including ggplot2 and tidyverse
+
+Next, code chunk was written to read a file called 2027_ALL_win50000_step50000.thetas and store it in a data frame created called theta. Then we scaled our theta by n sites.
+
+We sorted our data (by chromosomes and window), filtered it and saved it into a new file called theta2.
+
+Next, we plot histogram by window and plot nuclear diversity graph as Pi
+
+Then, we compared pi and theta-w and look for the deviation. Finally, we calculated the minimum and maximum Tajima D values.
 
 
 ### 09/25/2025: PCA and Admixture Analysis 
+Overall, the script was aimed at performing the PCA and admixture analysis on red spruce using a processed data named PCA_ADMIX in myresult directory. The path to the file was stipulated in the code chunk
+To begin the analysis, libraries were loaded including ggplot2 and tidyverse
+
+Then, we loaded the covariance matrix and estimate the PCA using eigen and the variance associated.
+
+A bar chart explaining the proportion of variance was done.
+A population data frame was created and then PCA plot was generated using ggscatter.
+
+Finally Admixture Analysis was done and we plot admixture Co-efficient.
 
