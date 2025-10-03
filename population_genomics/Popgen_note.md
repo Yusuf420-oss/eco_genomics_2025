@@ -104,25 +104,50 @@ ggplot
 
 Then, we compared pi and theta-w and look for the deviation. Finally, we calculated the minimum and maximum Tajima D values.
 
+We added class results to google doc. The results suggest a latitudinal trend in diversity (higher in north) and inverse for TajD (more bottlenecked in south)
+
 
 ### 09/25/2025: PCA and Admixture Analysis 
 Overall, the script was aimed at performing the PCA and admixture analysis on red spruce using a processed data named PCA_ADMIX in myresult directory. The path to the file was stipulated in the code chunk
 
 ~/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/
 
-To begin the analysis, libraries were loaded including ggplot2 and tidyverse
+We created principal component analyses (PCA) with the 95 red spruce samples (N=113 total)
 
-library(ggplot2)
-library(ggpubr)
+We used beagle file in the class datashare with genotype likelihoods alraedy computed:
 
-Then, we loaded the covariance matrix and estimate the PCA using eigen and the variance associated.
+/gpfs1/cl/ecogen/pbio6800/population_genomics/ANGSD/RSBS_poly.beagle.gz
 
-COV<-as.matrix(read.table("RSBS_poly_K2.cov"))
-PCA<-eigen(COV)
+We ran PCAngsd to estimate PCA and admixture analysis. Important options were set the chosen value of k (= # of groups or clusters to assign ancestry to). Note that K is equivalent to the number of PCA eignevalues + 1.
 
-A bar chart explaining the proportion of variance was done.
-A population data frame was created and then PCA plot was generated using ggscatter package.
+Looking at the results, it appears there is evidence for hybridization. We discussed a bit as a class but would like to follow up with some additional interpretation and analysis. 
 
-Finally Admixture Analysis was done and we plot admixture Co-efficient.
 
 ### 09/30/2025: Selection Analysis
+We wrote a bash script called PCAngsd_allRS_selection.sh that includes the code ckunk for selection analysis.
+
+We recall PCAngsd where genotype likelihoods in “beagle” format has been calculated and located in
+
+/gpfs1/cl/ecogen/pbio6800/population_genomics/ANGSD/allRS_poly.beagle.gz
+
+Prior to selection analysis, we added the following options listed below while some options such as amix or admix-K are removed and other options are remain the same.
+
+--selection-eig $E \
+--selection \
+--sites-save \
+--maf-save \
+--snp-weights \
+
+
+After running the scripts and got the results files, we used R to import selection results and meta-data associated with it. Then p-values were assigned for each tested locus, and  we visualize the results using the ggplot package.
+
+Looking at the results, it appears there is evidence for selection.
+
+
+
+
+
+
+
+
+
