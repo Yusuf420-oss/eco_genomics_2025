@@ -567,3 +567,4 @@ No data for chromoId=13351 chromoname=JASDQU010422411.1
 This could either indicate that there really is no data for this chromosome
 Or it could be problem with this program regSize=0 notDone=8
 	-> Printing at chr: JASDQU010423391.1 pos:3221 chunknumber 41100 contains 1170 sites
+	-> Printing at chr: JASDQU010425509.1 pos:3778 chunknumber 41200 contains 686 sites
