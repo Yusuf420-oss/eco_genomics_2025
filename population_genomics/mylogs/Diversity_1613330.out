@@ -1,0 +1,69 @@
+/var/spool/slurm/d/job1613330/slurm_script: line 34: cd: -/: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+mkdir: cannot create directory ‘/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD’: File exists
+	-> angsd version: 0.935 (htslib: 1.19.1) build(Dec 18 2024 17:12:57)
+	-> angsd -b /users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_bam.list -ref /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana/Pmariana1.0-genome_reduced.fa -anc /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana/Pmariana1.0-genome_reduced.fa -out /users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/population_genomics/mydata/ANGSD/2027_ALL -nThreads 10 -remove_bads 1 -C 50 -baq 1 -minMapQ 20 -minQ 20 -GL 2 -doSaf 1 -doCounts 1 -minInd 4 -setMinDepthInd 3 -setMaxDepthInd 40 -setMinDepth 10 -skipTriallelic 1 -doMajorMinor 4 
+	-> Inputtype is BAM/CRAM
+[multiReader] 8 samples in 8 input files
+	-> Reading fasta: /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana/Pmariana1.0-genome_reduced.fa
+	-> Reading fasta: /gpfs1/cl/ecogen/pbio6800/PopulationGenomics/ref_genome/Pmariana/Pmariana1.0-genome_reduced.fa
+	-> Parsing 8 number of samples 
+No data for chromoId=5 chromoname=JASDQU010005130.1
+This could either indicate that there really is no data for this chromosome
+Or it could be problem with this program regSize=0 notDone=8
+No data for chromoId=26 chromoname=JASDQU010007516.1
+This could either indicate that there really is no data for this chromosome
+Or it could be problem with this program regSize=0 notDone=8
+	-> Printing at chr: JASDQU010009742.1 pos:788 chunknumber 100 contains 714 sites
+	-> Printing at chr: JASDQU010010095.1 pos:5108 chunknumber 200 contains 8205 sites
+	-> Printing at chr: JASDQU010010225.1 pos:20918 chunknumber 300 contains 4419 sites
+	-> Printing at chr: JASDQU010010307.1 pos:12537 chunknumber 400 contains 3087 sites
+	-> Printing at chr: JASDQU010010452.1 pos:157947 chunknumber 500 contains 803 sites
+	-> Printing at chr: JASDQU010010578.1 pos:193438 chunknumber 600 contains 935 sites
+	-> Printing at chr: JASDQU010010695.1 pos:1163 chunknumber 700 contains 2987 sites
+	-> Printing at chr: JASDQU010010854.1 pos:4655 chunknumber 800 contains 11814 sites
+	-> Printing at chr: JASDQU010010971.1 pos:201645 chunknumber 900 contains 12339 sites
+	-> Printing at chr: JASDQU010011095.1 pos:111865 chunknumber 1000 contains 324 sites
+	-> Printing at chr: JASDQU010011246.1 pos:339627 chunknumber 1100 contains 703 sites
+	-> Printing at chr: JASDQU010011369.1 pos:1924 chunknumber 1200 contains 8144 sites
+	-> Printing at chr: JASDQU010011480.1 pos:571009 chunknumber 1300 contains 749 sites
+	-> Printing at chr: JASDQU010011622.1 pos:163 chunknumber 1400 contains 8443 sites
+	-> Printing at chr: JASDQU010011766.1 pos:256359 chunknumber 1500 contains 621 sites
+	-> Printing at chr: JASDQU010011906.1 pos:221979 chunknumber 1600 contains 352 sites
+	-> Printing at chr: JASDQU010012103.1 pos:18781 chunknumber 1700 contains 2176 sites
+	-> Printing at chr: JASDQU010012250.1 pos:8142 chunknumber 1800 contains 5148 sites
+	-> Printing at chr: JASDQU010012357.1 pos:109 chunknumber 1900 contains 8380 sites
+	-> Printing at chr: JASDQU010012436.1 pos:255443 chunknumber 2000 contains 726 sites
+	-> Printing at chr: JASDQU010012534.1 pos:596368 chunknumber 2100 contains 501 sites
+	-> Printing at chr: JASDQU010012685.1 pos:354222 chunknumber 2200 contains 1139 sites
+	-> Printing at chr: JASDQU010012826.1 pos:123385 chunknumber 2300 contains 960 sites
+	-> Printing at chr: JASDQU010012962.1 pos:92602 chunknumber 2400 contains 180 sites
+No data for chromoId=740 chromoname=JASDQU010013023.1
+This could either indicate that there really is no data for this chromosome
+Or it could be problem with this program regSize=0 notDone=8
+	-> Printing at chr: JASDQU010013110.1 pos:113341 chunknumber 2500 contains 254 sites
+	-> Printing at chr: JASDQU010013253.1 pos:266149 chunknumber 2600 contains 818 sites
+	-> Printing at chr: JASDQU010013361.1 pos:68949 chunknumber 2700 contains 251 sites
+	-> Printing at chr: JASDQU010013500.1 pos:107616 chunknumber 2800 contains 672 sites
+	-> Printing at chr: JASDQU010013667.1 pos:186140 chunknumber 2900 contains 313 sites
+	-> Printing at chr: JASDQU010013782.1 pos:120180 chunknumber 3000 contains 1599 sites
+	-> Printing at chr: JASDQU010013929.1 pos:154278 chunknumber 3100 contains 265 sites
+	-> Printing at chr: JASDQU010014048.1 pos:56545 chunknumber 3200 contains 8229 sites
+	-> Printing at chr: JASDQU010014233.1 pos:106067 chunknumber 3300 contains 213 sites
+	-> Printing at chr: JASDQU010014346.1 pos:110934 chunknumber 3400 contains 417 sites
+	-> Printing at chr: JASDQU010014504.1 pos:259930 chunknumber 3500 contains 612 sites
+	-> Printing at chr: JASDQU010014609.1 pos:165991 chunknumber 3600 contains 432 sites
+	-> Printing at chr: JASDQU010014800.1 pos:100897 chunknumber 3700 contains 313 sites
+	-> Printing at chr: JASDQU010014910.1 pos:5701 chunknumber 3800 contains 6405 sites
+	-> Printing at chr: JASDQU010019777.1 pos:14 chunknumber 3900 contains 5088 sites
+No data for chromoId=1200 chromoname=JASDQU010025140.1
+This could either indicate that there really is no data for this chromosome
+Or it could be problem with this program regSize=0 notDone=8
+	-> Printing at chr: JASDQU010025304.1 pos:21360 chunknumber 4000 contains 2615 sites
+	-> Printing at chr: JASDQU010026050.1 pos:70648 chunknumber 4100 contains 227 sites
+	-> Printing at chr: JASDQU010026538.1 pos:8718 chunknumber 4200 contains 417 sites
+	-> Printing at chr: JASDQU010027082.1 pos:33785 chunknumber 4300 contains 219 sites
+	-> Printing at chr: JASDQU010027683.1 pos:85046 chunknumber 4400 contains 285 sites
+	-> Printing at chr: JASDQU010028188.1 pos:1342 chunknumber 4500 contains 2782 sites
+	-> Printing at chr: JASDQU010028658.1 pos:4391 chunknumber 4600 contains 4048 sites
+	-> Printing at chr: JASDQU010029215.1 pos:22699 chunknumber 4700 contains 326 sites

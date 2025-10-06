@@ -33,6 +33,12 @@
 
 cd -/Projects_Genomics/eco_genomics_2025/population_genomics/myscripts
 
-bash ANGSD.sh
+bash ANGSD_setMinDepthInd_3.sh
 
-bash ANGSD_do_Theta.sh
+bash ANGSD_setMinDepthInd_5.sh
+
+bash ANGSD_setMaxDepthInd_30.sh
+
+bash ANGSD_setMaxDepthInd_50.sh
+
+#bash ANGSD_do_Theta.sh
