@@ -1,0 +1,198 @@
+---
+title: "PCA_Admix"
+author: "Oyebamiji Yusuf"
+date: "2025-09-25"
+output: html_document
+---
+
+```{r setup, include=FALSE }
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir="~/Projects_Genomics/eco_genomics_2025/population_genomics/myresults/ANGSD/PCA_ADMIX/")
+
+```
+ 
+## R Markdown
+Load Libraries for Plotting
+ 
+```{r}
+library(ggplot2)
+library(ggpubr)
+list.files()
+```
+First Lets estimate PCA!
+ 
+```{r}
+#K=2
+COV2<-as.matrix(read.table("RSBS_poly_K2.cov"))
+PCA2<-eigen(COV)
+
+#K=3
+COV3<-as.matrix(read.table("RSBS_poly_K3.cov"))
+PCA3<-eigen(COV)
+
+#K=4
+COV4<-as.matrix(read.table("RSBS_poly_K4.cov"))
+PCA4<-eigen(COV)
+
+#K=5
+COV5<-as.matrix(read.table("RSBS_poly_K5.cov"))
+PCA5<-eigen(COV)
+```
+
+```{r}
+#K2
+varK2<- round(PCA2$values/sum(PCA2$values),3)
+varK2[1:3]
+
+barplot(varK2, 
+        xlab="Eigenvalues of the PCA K=2", 
+        ylab="Proportion of variance explained")
+```
+
+
+```{r}
+#K3
+varK3<- round(PCA3$values/sum(PCA3$values),4)
+varK3[1:4]
+
+barplot(varK3, 
+        xlab="Eigenvalues of the PCA K=3", 
+        ylab="Proportion of variance explained")
+```
+
+
+```{r}
+#K4
+varK4<- round(PCA4$values/sum(PCA4$values),5)
+varK4[1:5]
+
+barplot(varK4, 
+        xlab="Eigenvalues of the PCA K=4", 
+        ylab="Proportion of variance explained")
+```
+
+```{r}
+#K5
+varK5<- round(PCA5$values/sum(PCA5$values),6)
+varK4[1:6]
+
+barplot(varK5, 
+        xlab="Eigenvalues of the PCA K=5", 
+        ylab="Proportion of variance explained")
+```
+
+
+```{r}
+names <- read.table("RSBS_bam.list")
+names <- unlist(strsplit(basename(as.character(names[,1])), split = ".sorted.rmdup.bam"))
+split = strsplit(names, "_")
+pops <- data.frame(names[1:113], do.call(rbind, split[1:113]))
+names(pops) = c("Ind", "Pop", "Row", "Col")
+
+data=as.data.frame(PCA$vectors)
+data=data[,c(1:3)]
+data= cbind(data, pops)
+
+```
+
+```{r}
+ggscatter(data, x = "V1", y = "V2",
+          color = "Pop",
+          mean.point = TRUE,
+          star.plot = TRUE,
+          main="Red spruce-Black spruce genetic PCA") +
+  theme_bw(base_size = 13, base_family = "Times") +
+  labs(x = paste0("PC1: (",var[1]*100,"%)"), y = paste0("PC2: (",var[2]*100,"%)"))
+```
+
+
+Admixture Analysis
+
+```{r}
+
+#K=2
+q2 <- read.table("RSBS_poly_K2.admix.2.Q", sep=" ", header=F)
+
+K2=dim(q2)[2] #Find the level of K modeled
+## rank order the samples according to population code
+ord2<-order(pops[,2])
+
+#K=3
+q3 <- read.table("RSBS_poly_K3.admix.3.Q", sep=" ", header=F)
+
+K3=dim(q3)[2] #Find the level of K modeled
+## rank order the samples according to population code
+ord3<-order(pops[,2])
+
+#K=4
+q4 <- read.table("RSBS_poly_K4.admix.4.Q", sep=" ", header=F)
+
+K4=dim(q4)[2] #Find the level of K modeled
+## rank order the samples according to population code
+ord4<-order(pops[,2])
+
+#K=5
+q5 <- read.table("RSBS_poly_K5.admix.5.Q", sep=" ", header=F)
+
+K5=dim(q5)[2] #Find the level of K modeled
+## rank order the samples according to population code
+ord5<-order(pops[,2])
+
+```
+
+Plot admixture Co-efficient
+```{r}
+pdf("Admix_K2_K5.pdf",width=4,height=8)
+par(mfrow=c(4,1))
+
+#K=2
+barplot(t(q2)[,ord2],
+        #col=cols[1:K],
+        col=c("black","red"),
+        space=0,border=NA,
+        xlab="Populations",ylab="Admixture proportions",
+        main=paste0("Red Spruce-Black Spruce Admixture: K=",K))
+text(tapply(1:nrow(pops),pops[ord,2],mean),-0.05,unique(pops[ord,2]),xpd=T,cex=0.75,srt=45)
+abline(v=cumsum(sapply(unique(pops[ord,2]),function(x){sum(pops[ord,2]==x)})),col=1,lwd=1.2)
+
+#K=3
+barplot(t(q3)[,ord3],
+        #col=cols[1:K],
+        col=c("red","black", "coral1"),
+        space=0,border=NA,
+        xlab="Populations",ylab="Admixture proportions",
+        main=paste0("Red Spruce-Black Spruce Admixture: K=",K3))
+text(tapply(1:nrow(pops),pops[ord,2],mean),-0.05,unique(pops[ord,2]),xpd=T,cex=0.75,srt=45)
+abline(v=cumsum(sapply(unique(pops[ord,2]),function(x){sum(pops[ord,2]==x)})),col=1,lwd=1.2)
+
+#K=4
+barplot(t(q4)[,ord4],
+        #col=cols[1:K],
+        col=c("red","black", "coral1", "firebrick"),
+        space=0,border=NA,
+        xlab="Populations",ylab="Admixture proportions",
+        main=paste0("Red Spruce-Black Spruce Admixture: K=",K4))
+text(tapply(1:nrow(pops),pops[ord,2],mean),-0.05,unique(pops[ord,2]),xpd=T,cex=0.75,srt=45)
+abline(v=cumsum(sapply(unique(pops[ord,2]),function(x){sum(pops[ord,2]==x)})),col=1,lwd=1.2)
+
+#K=5
+barplot(t(q5)[,ord5],
+        #col=cols[1:K],
+        col=c("red","tomato", "coral1", "black", "firebrick"),
+        space=0,border=NA,
+        xlab="Populations",ylab="Admixture proportions",
+        main=paste0("Red Spruce-Black Spruce Admixture: K=",K5))
+text(tapply(1:nrow(pops),pops[ord,2],mean),-0.05,unique(pops[ord,2]),xpd=T,cex=0.75,srt=45)
+abline(v=cumsum(sapply(unique(pops[ord,2]),function(x){sum(pops[ord,2]==x)})),col=1,lwd=1.2)
+
+dev.off()
+```
+
+```{r}
+LL <-c(-6.015E7, -5.964E7, -5.927E7, -5.891E7)
+
+K<-seq(2,5,1)
+plot(K,LL, type="l")
+
+```
+
