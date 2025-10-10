@@ -1,0 +1,22 @@
+## Transcriptomics Module
+ 
+This is a place to record notes of coding happenings during the transcriptomics module
+ 
+# 10/07/2025
+ 
+On the first day of transcrtipomics we learned about the motivation behind and processes involved in the transciptomics worklow. We discussed applications, what questions can be answered, and critical steps involved in processing RNA.
+ 
+We started to run fastp to clean and visualize data quality in our fastq files but encountered some issues with file recognition. To be continued...
+ 
+# 10/09/2025
+ 
+Edited our fastp_tonsa.sh to become fastp_tonsa_take2.sh. This script is more fluent in computer speak and lives: 
+`/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/transcriptomics/myscripts`
+
+
+To check the quality of our sequence, we ran fastp_tonsa.take2.sh. Am html file were produced with the quality reports.
+
+To align our sequence to the reference genome, We created a script called salmon_quant.sh. and ran it
+`/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/transcriptomics/myscripts`
+
+
