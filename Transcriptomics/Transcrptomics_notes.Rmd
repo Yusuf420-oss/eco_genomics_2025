@@ -19,4 +19,51 @@ To check the quality of our sequence, we ran fastp_tonsa.take2.sh. Am html file 
 To align our sequence to the reference genome, We created a script called salmon_quant.sh. and ran it
 `/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/transcriptomics/myscripts`
 
+# 10/14/2025
+Review mapping rates and saved a mapping rate file
+
+Disscussed factors  that coulkd affect mapping rate. All about 40%
+  -Contamination of reads from other taxa that would not map to the reference genome such as algae, microbes
+  _ Low RNA quality, Low RNA yield and used low output to prepare RNA
+  -Could try with a head command  in the cleaning of the reads in the evnts of primers affect mapping rate
+  -Could do a new de novo assembly from these reads (would need to anotation)
+  Prepped quant.sh file to import in DESeq2
+  
+  cd /gpfs1/cl/ecogen/pbio6800/Transcriptomics/transcripts_quant
+
+echo "sample,path" > /gpfs1/cl/ecogen/pbio6800/Transcriptomics/transcripts_quant/samples.csv
+for dir in */; do
+  sample_name=${dir%/}
+  echo "${sample_name},/gpfs1/cl/ecogen/pbio6800/Transcriptomics/transcripts_quant/${sample_name}" >> /gpfs1/cl/ecogen/pbio6800/Transcriptomics/transcripts_quant/samples.csv
+done
+
+Now in R studio use the library txiimport to make counts matrix
+
+# Load libraries
+library(tximport)
+library(readr)
+
+# Path to sample table
+samples <- read.csv("/gpfs1/home/X/X/XXX/projects/eco_genomics2025/transcriptomics/myresults/samples.csv")
+
+# Make a named vector of quant.sf file paths
+files <- file.path(samples$path, "quant.sf")
+names(files) <- samples$sample
+
+# Import Salmon quantifications
+txi <- tximport(files, type = "salmon", txOut = TRUE)
+
+# Write counts to txt
+write.txt(txi$counts, "/gpfs1/home/X/X/XXX/projects/eco_genomics2025/transcriptomics/mydata/counts_matrix.txt")
+
+##DESeq2 start of Data analysis
+
+Copy over metadata file into mydata
+
+##Data Distribution
+we explore the data through the use of bar graph and histogram 
+
+
+
+
 

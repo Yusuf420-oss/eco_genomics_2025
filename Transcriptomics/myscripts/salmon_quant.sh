@@ -6,7 +6,7 @@
 #SBATCH --mem=16G
 #SBATCH --time=1:00:00 
 #SBATCH --job-name=Salmon_mapping
-#SBATCH --output=/users/y/o/yoyebami/Projects_Genomics/eco_genomics2025/transcriptomics/mylogs/%x_%j.out
+#SBATCH --output=/users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/transcriptomics/mylogs/%x_%j.out
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=Yusuf.Oyebamiji@uvm.edu
 

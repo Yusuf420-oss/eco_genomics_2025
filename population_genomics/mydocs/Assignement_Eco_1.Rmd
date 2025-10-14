@@ -24,19 +24,19 @@ First Lets estimate PCA!
 ```{r}
 #K=2
 COV2<-as.matrix(read.table("RSBS_poly_K2.cov"))
-PCA2<-eigen(COV)
+PCA2<-eigen(COV2)
 
 #K=3
 COV3<-as.matrix(read.table("RSBS_poly_K3.cov"))
-PCA3<-eigen(COV)
+PCA3<-eigen(COV3)
 
 #K=4
 COV4<-as.matrix(read.table("RSBS_poly_K4.cov"))
-PCA4<-eigen(COV)
+PCA4<-eigen(COV4)
 
 #K=5
 COV5<-as.matrix(read.table("RSBS_poly_K5.cov"))
-PCA5<-eigen(COV)
+PCA5<-eigen(COV5)
 ```
 
 ```{r}
