@@ -64,6 +64,16 @@ Copy over metadata file into mydata
 we explore the data through the use of bar graph and histogram 
 
 
+### Continuing on 10/18/2025
 
+We checked the quality of the data by sample clustering and visuadlization. The goal of transformation "is to remove the dependence of the variance on the mean, particularly the high variance of the logarithm of count data when the mean is low
+
+we used the following code chunks
+
+We did PCA to visualize global gene expression patterns
+
+We checked outliers using the sampleTree.
+
+##Making a PCA from the tutorial
 
 
