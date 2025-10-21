@@ -129,4 +129,44 @@ ggplot(pcaData, aes(PC1, PC2)) +
   
 ## 10/21/2025
 
+We plot Individual Genes to counts specific top interaction gene (important validatition that the normalization, model is working) using the code chuck below
+
+```{r}
+d <-plotCounts(dds, gene="TRINITY_DN148336_c14_g7_i1", intgroup = (c("line","generation")), returnData=TRUE)
+d
+
+d$generation <- factor(d$generation, levels = sort(unique(d$generation)))
+
+p <- ggplot(d, aes(x = generation, y = count, color = line, group = line)) +
+  theme_minimal() + theme(text = element_text(size=20), panel.grid.major=element_line(colour="grey"))
+p <- p + geom_point(position=position_jitter(w=0.2,h=0), size=3, aes(shape = line)) 
+p <- p + stat_summary(fun = mean, geom = "point", size=5, alpha=0.7) 
+p <- p + stat_summary(fun = mean, geom = "line", size = 1.5, aes(group = line), alpha = 0.8)
+p <- p + scale_color_manual(values = c("control" = "blue", "treatment" = "red"))
+p
+```
+
+Then, We can make an MA plot to determine the the relationship between LFC and magnitude of expression
+```{r}
+plotMA(resG1_CvT, ylim=c(-5,5))
+```
+
+We make a Volcano plot to determine the relationship between LFC and significance of DGE.
+
+Then, we make a Heatmap of top 20 genes sorted by pvalue. We try to look at the variation in gene expression across individual samples among treatment groups
+
+```{r}
+topgenes <- head(rownames(resG1_CvT),100)
+mat <- assay(vsd)[topgenes,]
+mat <- mat - rowMeans(mat)
+df <- as.data.frame(colData(dds)[,c("generation","line")])
+pheatmap(mat, annotation_col=df)
+pheatmap(mat, annotation_col=df, cluster_cols = F)
+```
+
+Then we make plots to explore differentially expressed genes between CvsT across generations.
+
+Finally we can make a Venn or Euler plot to determine the amount of overlap between genes differentially expressed between treatments across generations (G1, G2 and G3)
+
+
 
