@@ -433,3 +433,84 @@ pheatmap(lfc_mat2,
          show_rownames = FALSE,
          main = "LFC (Treatment vs Control) of Sig Genes in Gen 2")
 ```
+
+
+##Functional enrichment using TopGO.
+First, get set up with your differential expression contrasts from DESeq2.
+```{r}
+## Set your working directory
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "users/y/o/yoyebami/Projects_Genomics/eco_genomics_2025/Transcriptomics/mydata")
+
+## Import the libraries that we're likely to need in this session
+
+library(DESeq2)
+library(dplyr)
+library(tibble)
+library(topGO)
+library(GO.db)
+library(ggplot2)
+library(scales) 
+ 
+# Import the counts matrix
+countsTable <- read.csv("counts_table.csv", header=TRUE, row.names=1)
+dim(countsTable)
+
+countsTableRound <- round(countsTable) # bc DESeq2 doesn't like decimals (and Salmon outputs data with decimals)
+# Corrects the column names to match between the metadata table and the counts matrix.
+colnames(countsTableRound) <- substr(colnames(countsTableRound), start=1, stop = 4)
+
+#import the sample description table
+conds <- read.delim("metadata.txt", header=TRUE, stringsAsFactors = TRUE, row.names=1)
+
+
+#### Create a DESeq object and define the experimental design here with the tilda
+
+dds <- DESeqDataSetFromMatrix(countData = countsTableRound, colData=conds, 
+                              design= ~ generation + line)
+
+dim(dds)
+
+# Filter out genes with too few reads - remove all genes with counts < 15 in more than 75% of 24 samples, so 18)
+## suggested by WGCNA on RNAseq FAQ
+
+dds <- dds[rowSums(counts(dds) >= 15) >= 18,]
+nrow(dds) 
+# How many transcripts have at least 15 reads (a.k.a counts) in 75% of the samples
+
+# Run the DESeq model to test for differential gene expression
+
+dds$line <- relevel(dds$line, ref = "control")
+dds$generation <- relevel(dds$generation, ref = "G1")
+
+dds$group <- factor(paste0(dds$line, dds$generation))
+design(dds) <- ~ group
+dds <- DESeq(dds)
+resultsNames(dds)
+
+
+#Gen1
+resG1_CvT <- results(dds, contrast=c("group","controlG1","treatmentG1"), alpha = 0.05)
+resG1_CvT <- resG1_CvT[order(resG1_CvT$padj),] #sort
+resG1_CvT <- resG1_CvT[!is.na(resG1_CvT$padj),]
+
+#Gen2
+resG2_CvT <- results(dds, contrast=c("group","controlG2","treatmentG2"), alpha = 0.05)
+resG2_CvT <- resG2_CvT[order(resG2_CvT$padj),] #sort
+resG2_CvT <- resG2_CvT[!is.na(resG2_CvT$padj),]
+
+#Gen3
+resG3_CvT <- results(dds, contrast=c("group","controlG3","treatmentG3"), alpha = 0.05)
+resG3_CvT <- resG3_CvT[order(resG3_CvT$padj),] #sort
+resG3_CvT <- resG3_CvT[!is.na(resG3_CvT$padj),]
+
+#Gen4
+resG4_CvT <- results(dds, contrast=c("group","controlG4","treatmentG4"), alpha = 0.05)
+resG4_CvT <- resG4_CvT[order(resG4_CvT$padj),] #sort
+resG4_CvT <- resG4_CvT[!is.na(resG4_CvT$padj),]
+```
+
+
+
+
+
