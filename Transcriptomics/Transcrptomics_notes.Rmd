@@ -168,5 +168,23 @@ Then we make plots to explore differentially expressed genes between CvsT across
 
 Finally we can make a Venn or Euler plot to determine the amount of overlap between genes differentially expressed between treatments across generations (G1, G2 and G3)
 
+## 10/23/2025 : Test for functional enrichment, GO analysis
+
+First, we set up differential expression contrasts from DESeq2. 
+
+Then, we look at distributions of our results
+
+Then, we make a density plot with a rugplot below to understand what we’re testing in a functional enrichment test.
+
+Then we ran TopGO. 
+
+We copied the Genes_GO_terms_output.tsv file into mtdata directory.
+
+Then, we evaluate the DESeq2 result for the generation 2 since most differentially expressed genes.
+
+We also visualize the enrichment data using software package REVIGO. 
+
+
+
 
 
