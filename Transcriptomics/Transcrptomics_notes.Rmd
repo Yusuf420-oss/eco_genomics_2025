@@ -182,7 +182,15 @@ We copied the Genes_GO_terms_output.tsv file into mtdata directory.
 
 Then, we evaluate the DESeq2 result for the generation 2 since most differentially expressed genes.
 
-We also visualize the enrichment data using software package REVIGO. 
+We also visualize the enrichment data using software package REVIGO.
+
+## 10/28/2025: Weighted Gene Correlation Network Analysis (WGCNA) 
+
+For this analysis we used a new rmd file and then create normalized gene expression matrix from DESeq2
+
+To test if any co-expressed modules that we identify are associated with organismal phenotype data collected, we copy the trait data (upper lethal temperature) associated with each sample into WGCNA_TraitData.csv file. This can be found in:  cp/gpfs1/cl/ecogen/pbio6800/Transcriptomics/enrichmentYou can cp it to your /mydata directory.. 
+
+
 
 
 
