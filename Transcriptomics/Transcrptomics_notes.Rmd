@@ -188,10 +188,86 @@ We also visualize the enrichment data using software package REVIGO.
 
 For this analysis we used a new rmd file and then create normalized gene expression matrix from DESeq2
 
-To test if any co-expressed modules that we identify are associated with organismal phenotype data collected, we copy the trait data (upper lethal temperature) associated with each sample into WGCNA_TraitData.csv file. This can be found in:  cp/gpfs1/cl/ecogen/pbio6800/Transcriptomics/enrichmentYou can cp it to your /mydata directory.. 
+To test if any co-expressed modules that we identify are associated with organismal phenotype data collected, we copy the trait data (upper lethal temperature) associated with each sample into WGCNA_TraitData.csv file. 
+
+This was be found in:  cp/gpfs1/cl/ecogen/pbio6800/Transcriptomics/enrichmentYou can cp it to your /mydata directory.
+
+Then,we choose a set of soft-thresholding powers using the code chunk below.
+
+Power <- c(c(1:10), seq(from = 12, to = 50, by = 2)) #calculate the networks by a variety of powers
+sft <- pickSoftThreshold(norm.counts, 
+                         powerVector = power,
+                         networkType = "signed",
+                         verbose = 5)
+
+sft.data <-sft$fitIndices
+#visualization to pick power
+
+a1 <- ggplot(sft.data, aes(Power, SFT.R.sq, label = Power)) +
+  geom_point() +
+  geom_text(nudge_y = 0.1) +
+  geom_hline(yintercept = 0.8, color = 'red') +
+  labs(x = 'Power', y = 'Scale free topology model fit, signed R^2') +
+  theme_classic()
 
 
+a2 <- ggplot(sft.data, aes(Power, mean.k., label = Power)) +
+  geom_point() +
+  geom_text(nudge_y = 0.1) +
+  labs(x = 'Power', y = 'Mean Connectivity') +
+  theme_classic()
 
+
+grid.arrange(a1, a2, ncol = 2)
+
+Then network construction was done using the code chunk below
+
+# convert matrix to numeric
+norm.counts[] <- sapply(norm.counts, as.numeric)
+dim(norm.counts) # check dimensions: 
+soft_power <- 18
+temp_cor <- cor
+cor <- WGCNA::cor
+
+
+# memory estimate w.r.t blocksize
+bwnet <- blockwiseModules(norm.counts,
+                          maxBlockSize = 14000,
+                          TOMType = "signed",
+                          power = soft_power,
+                          mergeCutHeight = 0.25,
+                          numericLabels = FALSE,
+                          randomSeed = 1234,
+                          verbose = 3)
+
+# This step takes a while so you can save it here for future work.
+save(bwnet, file = "bwnet_results_WGCNA.RData")
+load("bwnet_results_WGCNA.RData") #to load the bwnet file back in 
+
+cor <- temp_cor
+
+Then we Plot the dendrogram of modules using the following code chunk
+
+module_eigengenes <- bwnet$MEs
+
+# Print out a preview
+head(module_eigengenes)
+
+# get number of genes for each module
+table(bwnet$colors)
+
+#plot the dendrogram and the module colors before and after merging underneath
+plotDendroAndColors(bwnet$dendrograms[[1]], cbind(bwnet$unmergedColors, bwnet$colors),
+                    c("unmerged", "merged"),
+                    dendroLabels = FALSE,
+                    addGuide = TRUE,
+                    hang= 0.03,
+                    guideHang = 0.05)
+                    
+
+Then we test for a correlation between each eigengene of each module and our ULT trait data
+
+Finally, we plot the eigengene values by treatment and line conditions and look at what GO categories are present in any modules correlated with ULT
 
 
 
